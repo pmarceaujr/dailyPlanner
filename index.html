@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./includes/css/style.css" />
+    <title>Work Day Scheduler</title>
+  </head>
+
+  <body>
+    <header class="jumbotron">
+      <h1 class="display-3">Work Day Scheduler</h1>
+      <p class="lead">A simple calendar app for scheduling your work day</p>
+      <p id="currentDay" class="lead"></p>
+    </header>
+    <!-- Timeblocks go here -->
+    <div id="plannerContent" class="accordion">
+      <!--Begin the early morning hours section here -->
+      <div class="container-fluid card" id="earlyMornDiv">
+        <div class="card-header" id="headingOne">
+          <h1 class="mb-0">
+            <button
+              class="btn btn-link btn-block text-left"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              Early Morning Hours (Click to hide/show)
+            </button>
+          </h1>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#plannerContent">
+          <div class="card-body">
+            <table id="earlyMornTable" class="d-flex justify-content-center">
+              <tbody id="earlyBody" class=""></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--End early morning horus -->
+
+      <!-- Begin normal business hours section here-->
+      <div class="container-fluid card" id="plannerDiv">
+        <div class="card-header" id="headingTwo">
+          <h1 class="mb-0">
+            <button
+              class="btn btn-link btn-block text-left"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseTwo"
+              aria-expanded="true"
+              aria-controls="collapseTwo"
+            >
+              Normal Business Hours (Click to hide/show)
+            </button>
+          </h1>
+        </div>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#plannerContent">
+          <div class="card-body">
+            <table id="plannerTable" class="d-flex justify-content-center">
+              <tbody id="plannerBody" class=""></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--end normal business hours -->
+
+      <!-- Begin late evening hours section here -->
+      <div class="container-fluid card" id="lateAfterDiv">
+        <div class="card-header" id="headingThree">
+          <h1 class="mb-0">
+            <button
+              class="btn btn-link btn-block text-left"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseThree"
+              aria-expanded="true"
+              aria-controls="collapseThree"
+            >
+              Late Evening Hours (Click to hide/show)
+            </button>
+          </h1>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#plannerContent">
+          <div class="card-body">
+            <table id="lateAfterTable" class="d-flex justify-content-center">
+              <tbody id="lateAfterBody" class=""></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End late hours section-->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+    <script src="./includes/js/script.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>-->
+  </body>
+</html>
+<!--
+        <table class="table" id="plannerTable">
+        <tr class="d-flex">
+          <td class="hour col-12 col-md-1">hours</td>
+          <td class="description col-12 col-md-10">
+            <textarea name="" id="">This is my event</textarea>
+          </td>
+          <td class="saveBtn col-12 col-md-1">Save</td>
+        </tr>
+        <tr class="d-flex">
+          <td class="hour col-12 col-md-1">hours</td>
+          <td class="description col-12 col-md-10">
+            <textarea name="" id="" cols="15" rows="1">This is my event</textarea>
+          </td>
+          <td class="saveBtn col-12 col-md-1">Save</td>
+        </tr>
+        <tr class="d-flex">
+          <td class="hour col-12 col-md-1">hours</td>
+          <td class="description col-12 col-md-10">
+            <textarea name="" id="" cols="45" rows="1">This is my event</textarea>
+          </td>
+          <td class="saveBtn col-12 col-md-1">Save</td>
+        </tr>
+        <tr class="d-flex">
+          <td class="hour col-12 col-md-1">hours</td>
+          <td class="description col-12 col-md-10">
+            <textarea name="" id="" cols="45" rows="1">This is my event</textarea>
+          </td>
+          <td class="saveBtn col-12 col-md-1">Save</td>
+        </tr>
+      </table>
+-->
