@@ -16,9 +16,22 @@ let plannerDate = $('#currentDay');
 plannerDate.text(eventDate)
 plannerDate.append()
 
-//Code to save user input when any of the save buttons are clicked.
-plannerTable.on('click', '.saveBtn', function () {
-    saveEventDesc()
+//Code to save user input when a save button is clicked on the normal business hours table.
+plannerTable.on('click', '.saveBtn', function (event) {
+    event.preventDefault();
+    saveEventDesc(event)
+});
+
+//Code to save user input when a save button is clicked on the early morning business hours table.
+earlyMornTable.on('click', '.saveBtn', function (event) {
+    event.preventDefault();
+    saveEventDesc(event)
+});
+
+//Code to save user input when a save button is clicked on the after hours business hours table.
+lateAfterTable.on('click', '.saveBtn', function (event) {
+    event.preventDefault();
+    saveEventDesc(event)
 });
 
 //Code to back the calendar up one day.
@@ -39,7 +52,7 @@ plusOneDay.on('click', function () {
 
 //Build the 3 tables for the time slots in 1 hour increments, display hour, Event Text and a Save button.
 // table for early morning hours, normal business hours and late evening hours
-for (let i = 0; i <= dailyHours.length; i++) {
+for (let i = 0; i < dailyHours.length; i++) {
     plannerRowContent = (`<tr id='rowDesc${[i]}' class='row p-3'>`);
     plannerRowContent += (`<td id='rowHour${[i]}' style="width: 15%" class='hour' >${dailyHours[i]}</td>`);
     plannerRowContent += (`<td id='rowEvent${[i]}' style="width: 70%" class='description'><textarea  placeholder='Enter your event text here' cols=50></textarea></td>`);
@@ -72,29 +85,40 @@ for (let i = 0; i < plannerEvent.length; i++) {
 }
 
 //The save daily events description function will save the user input to local storage
-function saveEventDesc() {
-    for (let i = 0; i <= dailyHours.length; i++) {
-        eventDescText = $(`#rowEvent${[i]} textarea`).val()
-        evntDescProp = `rowEvent${[i]}`
+function saveEventDesc(event) {
+    let clickedSave = event.target;
+    let rowEventId = $(clickedSave).prev().attr('id');
+    eventDescText = $(`#${rowEventId} textarea`).val()
+    //check if the user enterd an event for the save button clicked
+    if (eventDescText) {
+        evntDescProp = rowEventId
+        if (!dailyEvents) {
+            dailyEvents = {}
+        }
         dailyEvents[evntDescProp] = eventDescText
         localStorage.setItem(plannerDate.text(), JSON.stringify(dailyEvents));
+        alert("Changes have been saved.")
     }
-    alert("Changes have been saved.")
+    else {
+        //if no data enterd for the event for the save button clicked, alert the user they clicked the wrong save
+        alert("Please enter an event descrption before clicking SAVE.")
+    }
 }
 
 //function to retrieve the saved event description, that is stored in local storage
 function loadEventDesc() {
-    // alert(plannerDate.text())
     dailyEvents = {}
+    //if this is getting called it's to load the events, so we set them all to empty string
+    for (let i = 0; i <= dailyHours.length; i++) {
+        $(`#rowEvent${i} textarea`).val("")
+    }
+    //load the daily events for the time slots specified in the date object stored in local storage
     dailyEvents = JSON.parse(localStorage.getItem(plannerDate.text()));
     console.log(dailyEvents)
     if (dailyEvents) {
         for (let key in dailyEvents) {
             $(`#${key} textarea`).val(dailyEvents[key])
         }
-    }
-    else {
-        alert("need to reset the event date")
     }
 }
 //Invoke the loadEventDesc function to load the event desc text into their respective rows in the
