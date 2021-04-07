@@ -3,7 +3,7 @@
   background-color: black;
 }
 .btn {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: white;
 }
 body {
@@ -14,10 +14,6 @@ body {
   background-color: black;
 }
 
-td {
-  vertical-align: middle;
-  padding: 1px;
-}
 textarea {
   background: transparent;
   border: none;
@@ -33,7 +29,7 @@ textarea {
   background-color: transparent;
   color: white;
   border-radius: 0;
-  border-bottom: 10px solid white;
+  border-bottom: 5px solid white;
 }
 
 .description {
@@ -57,7 +53,7 @@ textarea {
   color: #000000;
   border-top: 1px dashed #000000;
   vertical-align: middle;
-  padding: 1px;
+  padding: 15px;
 }
 
 .past {
